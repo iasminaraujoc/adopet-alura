@@ -1,27 +1,27 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-HttpClient client = null;
+HttpClient client = ConfiguraHttpClient("https://localhost:7136");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
    
     switch (args[0].Trim())
     {
-        case "import":
-               client =ConfiguraHttpClient("https://localhost:7136");
+        case "import":               
                List<Pet> listaDePet = new List<Pet>();
                 
                 using (StreamReader sr = new StreamReader(args[1]))
                 {                  
                     while (!sr.EndOfStream)
                     {
-                        Pet pet = new Pet();                        
                         string[] propriedades = sr.ReadLine().Split(';');
-                        pet.Id=Guid.Parse(propriedades[0]);
-                        pet.Nome=propriedades[1];
-                        pet.Tipo=TipoPet.Cachorro;
-                        Console.WriteLine(pet);
+                        Pet pet = new Pet(Guid.Parse(propriedades[0]),
+                          propriedades[1],
+                          TipoPet.Cachorro
+                         );
+
+                    Console.WriteLine(pet);
                         listaDePet.Add(pet);                        
                     }
                 }
@@ -41,7 +41,7 @@ try
             break;
         case "help":
             Console.WriteLine("Lista de comandos.");
-            if ((args.Length == 1) && (args[0].Equals("help")))
+            if (args.Length == 1)
             {
                 Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
                      "comando que exibe informações de ajuda dos comandos.");
@@ -52,7 +52,7 @@ try
                 Console.WriteLine($" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." + "\n\n\n\n");
                 Console.WriteLine("Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando." + "\n\n\n");
             }
-            else
+            else if (args.Length==2)
             {
                 if (args[1].Equals("import"))
                 {
@@ -72,16 +72,13 @@ try
                 {
                     while (!sr.EndOfStream)
                     {
-                        Pet pet = new Pet();
                         string[] propriedades = sr.ReadLine().Split(';');
-                        pet.Id = Guid.Parse(propriedades[0]);
-                        pet.Nome = propriedades[1];
-                        pet.Tipo = TipoPet.Cachorro;
-                        Console.WriteLine(pet);                      
-
+                        Pet pet = new Pet(Guid.Parse(propriedades[0]),
+                        propriedades[1],
+                        TipoPet.Cachorro
+                        );  
                     }
-                }     
-
+                } 
             Console.ReadKey();
             break;
         default:
@@ -118,19 +115,24 @@ Task<HttpResponseMessage> CreatePetAsync(Pet pet)
     }
 }
 
-internal class Pet
+public class Pet
 {
     public Guid Id { get; set; }
     public string? Nome { get; set; }
     public TipoPet Tipo { get; set; }
-
+    public Pet(Guid id, string? nome, TipoPet tipo)
+    {
+        Id = id;
+        Nome = nome;
+        Tipo = tipo;
+    }
     public override string ToString()
     {
-        return $"{this.Id} - {this.Nome} - {this.Tipo}";
+       return $"{this.Id} - {this.Nome} - {this.Tipo}";
     }
 }
 
- enum TipoPet
+ public enum TipoPet
     {
         Gato,
         Cachorro

@@ -8,6 +8,7 @@ namespace Alura.Adopet.API.Dominio.Entity
         {
            this.Id = Guid.NewGuid();
         }
+
         [Key]
         public Guid Id { get; set; }
         public string Nome { get; set; } = string.Empty;

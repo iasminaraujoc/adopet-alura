@@ -2,7 +2,6 @@ using Alura.Adopet.API.Dados.Context;
 using Alura.Adopet.API.Dados.Repository;
 using Alura.Adopet.API.Dominio.Entity;
 using Alura.Adopet.API.Service;
-using Alura.Adopet.API.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,14 +11,15 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 //DI
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 builder.Services.AddScoped<ClienteRepository>()
                 .AddScoped<PetRepository>()
                 .AddScoped<IEventoService,EventoService>()               
                 .AddDbContext<DataBaseContext>(opt => opt.UseInMemoryDatabase("AdopetDB"));
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
 //Habilitando o swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -30,26 +30,22 @@ var eventoService = serviceProvider.GetService<IEventoService>();
 
 var app = builder.Build();
 eventoService.GenerateFakeDate();
-//
 
 // Ativando o Swagger
 app.UseSwagger();
 
 //Endpoints
-//app.MapGet("/home",()=>"Adopet API");
+app.MapPost("/proprietario/add", ([FromServices] ClienteRepository repo, [FromBody] Cliente proprietario) =>
+{
+    return repo.Adicionar(proprietario);
+});
 
-//app.MapPost("/proprietario/add", ([FromServices] ClienteRepository repo, [FromBody] Cliente proprietario) => {
-//    proprietario.Id = Guid.NewGuid();
-//    return repo.Adicionar(proprietario);
-//});
-
-//app.MapGet("/proprietario/list", ([FromServices] ClienteRepository repo) =>
-//{
-//    return repo.ObterTodos();
-//});
+app.MapGet("/proprietario/list", ([FromServices] ClienteRepository repo) =>
+{
+    return repo.ObterTodos();
+});
 
 app.MapPost("/pet/add", ([FromServices] PetRepository repo, [FromBody] Pet pet) => {
-    pet.Id = Guid.NewGuid();
     return repo.Adicionar(pet);
 });
 
