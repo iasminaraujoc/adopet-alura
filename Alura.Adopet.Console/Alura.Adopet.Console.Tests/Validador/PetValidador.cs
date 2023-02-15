@@ -14,7 +14,7 @@ namespace Alura.Adopet.Console.Tests.Validador
 
             RuleFor(a => a.Tipo).Must(x => Enum.IsDefined(typeof(TipoPet), x)).WithMessage("Tipo de Pet não definido.");
 
-            
+                       
         }
     }
 }

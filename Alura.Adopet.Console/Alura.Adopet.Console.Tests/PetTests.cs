@@ -16,6 +16,7 @@ namespace Alura.Adopet.Console.Tests
             _output= _saida;
             _output.WriteLine("Invocando o construtor.");
         }
+
         [Fact]
         public void CriaUmObjetoPetValido()
         {
@@ -26,9 +27,8 @@ namespace Alura.Adopet.Console.Tests
 
             //Assert
             Assert.True(result.IsValid);
-
         }
-
+        
         [Fact]
         public void CriaUmObjetoPetComNomevazio()
         {
