@@ -1,5 +1,6 @@
 using Alura.Adopet.Console.Tests.Builder;
 using Alura.Adopet.Console.Tests.Validador;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Xunit.Abstractions;
 
 namespace Alura.Adopet.Console.Tests
@@ -82,7 +83,7 @@ namespace Alura.Adopet.Console.Tests
             var result = _validador.Validate(_pet);
 
             //Assert
-            Assert.False(result.IsValid);
+            Assert.False(result.IsValid);         
             Assert.Contains(result.Errors, x => x.ErrorMessage == "Tipo de Pet não definido.");
         }
 
