@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using Alura.Adopet.Console;
 
 HttpClient client = ConfiguraHttpClient("https://localhost:7136");
 Console.ForegroundColor = ConsoleColor.Green;
@@ -117,26 +118,3 @@ Task<HttpResponseMessage> CreatePetAsync(Pet pet)
         return client.PostAsJsonAsync("pet/add",pet);
     }
 }
-
-public class Pet
-{
-    public Guid Id { get; set; }
-    public string? Nome { get; set; }
-    public TipoPet Tipo { get; set; }
-    public Pet(Guid id, string? nome, TipoPet tipo)
-    {
-        Id = id;
-        Nome = nome;
-        Tipo = tipo;
-    }
-    public override string ToString()
-    {
-       return $"{this.Id} - {this.Nome} - {this.Tipo}";
-    }
-}
-
- public enum TipoPet
-    {
-        Gato,
-        Cachorro
-    }
