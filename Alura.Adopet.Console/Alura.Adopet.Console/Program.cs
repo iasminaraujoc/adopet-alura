@@ -2,11 +2,11 @@
 using System.Net.Http.Json;
 using Alura.Adopet.Console;
 
-async Task Import()
+async Task Import(string caminhoArquivo)
 {
     List<Pet> listaDePet = new List<Pet>();
 
-    using (StreamReader sr = new StreamReader(args[1]))
+    using (StreamReader sr = new StreamReader(caminhoArquivo))
     {
         while (!sr.EndOfStream)
         {
@@ -35,7 +35,7 @@ async Task Import()
     Console.ReadKey();
 }
 
-void Help()
+void Help(string docComando)
 {
     Console.WriteLine("Lista de comandos.");
     if (args.Length == 1)
@@ -51,12 +51,12 @@ void Help()
     }
     else if (args.Length == 2)
     {
-        if (args[1].Equals("import"))
+        if (docComando.Equals("import"))
         {
             Console.WriteLine(" adopet import <arquivo> " +
                 "comando que realiza a importação do arquivo de pets.");
         }
-        if (args[1].Equals("show"))
+        if (docComando.Equals("show"))
         {
             Console.WriteLine(" adopet show <arquivo>  comando que " +
                 "exibe no terminal o conteúdo do arquivo importado.");
@@ -65,9 +65,9 @@ void Help()
     Console.ReadKey();
 }
 
-void Show()
+void Show(string caminhoArquivo)
 {
-    using (StreamReader sr = new StreamReader(args[1]))
+    using (StreamReader sr = new StreamReader(caminhoArquivo))
     {
         Console.WriteLine("----- Importaddos os dados abaixo -----");
         while (!sr.EndOfStream)
@@ -87,16 +87,18 @@ HttpClient client = ConfiguraHttpClient("https://localhost:7136");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
-    switch (args[0].Trim())
+    string comando = args[0];
+
+    switch (comando.Trim())
     {
         case "import":
-            await Import();
+            await Import(caminhoArquivo:args[1]);
             break;
         case "help":
-            Help();
+            Help(docComando:args[1]);
             break;
         case "show":
-            Show();
+            Show(caminhoArquivo:args[1]);
             break;
         default:
             Console.WriteLine("Comando inválido!");
