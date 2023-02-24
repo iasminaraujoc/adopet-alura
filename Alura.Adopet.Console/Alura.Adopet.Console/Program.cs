@@ -2,6 +2,10 @@
 using System.Net.Http.Json;
 using Alura.Adopet.Console;
 
+const string IMPORT = "import";
+const string HELP = "help";
+const string SHOW = "show";
+
 async Task Import(string caminhoArquivo)
 {
     List<Pet> listaDePet = new List<Pet>();
@@ -35,34 +39,34 @@ async Task Import(string caminhoArquivo)
     Console.ReadKey();
 }
 
-void Help(string docComando)
+void Help()
 {
     Console.WriteLine("Lista de comandos.");
-    if (args.Length == 1)
-    {
-        Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
-             "comando que exibe informações de ajuda dos comandos.");
-        Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
-        Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
-        Console.WriteLine("Comando possíveis: ");
-        Console.WriteLine($" adopet import <arquivo> comando que realiza a importação do arquivo de pets.");
-        Console.WriteLine($" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." + "\n\n\n\n");
-        Console.WriteLine("Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando." + "\n\n\n");
-    }
-    else if (args.Length == 2)
-    {
-        if (docComando.Equals("import"))
-        {
-            Console.WriteLine(" adopet import <arquivo> " +
-                "comando que realiza a importação do arquivo de pets.");
-        }
-        if (docComando.Equals("show"))
-        {
-            Console.WriteLine(" adopet show <arquivo>  comando que " +
-                "exibe no terminal o conteúdo do arquivo importado.");
-        }
-    }
+    
+    Console.WriteLine($"adopet {HELP} <parametro> ous simplemente adopet {HELP}  " +
+            "comando que exibe informações de ajuda dos comandos.");
+    Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
+    Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
+    Console.WriteLine("Comando possíveis: ");
+    Console.WriteLine($" adopet {IMPORT} <arquivo> comando que realiza a importação do arquivo de pets.");
+    Console.WriteLine($" adopet {SHOW}   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." + "\n\n\n\n");
+    Console.WriteLine($"Execute 'adopet.exe {HELP} [comando]' para obter mais informações sobre um comando." + "\n\n\n");
+    
     Console.ReadKey();
+}
+
+void HelpDoComando(string docComando)
+{
+    if (docComando.Equals(IMPORT))
+    {
+        Console.WriteLine($" adopet {IMPORT} <arquivo> " +
+            "comando que realiza a importação do arquivo de pets.");
+    }
+    if (docComando.Equals(SHOW))
+    {
+        Console.WriteLine($" adopet {SHOW} <arquivo>  comando que " +
+            "exibe no terminal o conteúdo do arquivo importado.");
+    }
 }
 
 void Show(string caminhoArquivo)
@@ -83,6 +87,7 @@ void Show(string caminhoArquivo)
     Console.ReadKey();
 }
 
+
 HttpClient client = ConfiguraHttpClient("https://localhost:7136");
 Console.ForegroundColor = ConsoleColor.Green;
 try
@@ -91,13 +96,20 @@ try
 
     switch (comando.Trim())
     {
-        case "import":
+        case IMPORT:
             await Import(caminhoArquivo:args[1]);
             break;
-        case "help":
-            Help(docComando:args[1]);
+        case HELP:
+            if (args.Length == 2) 
+            {
+                HelpDoComando(docComando: args[1]);
+            }
+            else
+            {
+                Help();
+            }
             break;
-        case "show":
+        case SHOW:
             Show(caminhoArquivo:args[1]);
             break;
         default:
