@@ -1,4 +1,6 @@
-﻿namespace Alura.Adopet.Console.Tests.Builder;
+﻿using Alura.Adopet.Console.Modelos;
+
+namespace Alura.Adopet.Console.Tests.Builder;
 internal static class PetBuilder
 {
    internal static Pet Build()

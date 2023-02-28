@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Alura.Adopet.Console.Modelos;
+using FluentValidation;
 
 namespace Alura.Adopet.Console.Tests.Validador
 {

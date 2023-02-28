@@ -1,13 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Alura.Adopet.Console.Modelos;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
-    internal class Show
+    internal class Show : IComando
     {
+        public string Argumento { get; set; }
+
+        public string DocumentacaoComando()
+        {
+            return $" adopet show <arquivo>  comando que " +
+                    "exibe no terminal o conteúdo do arquivo importado.";
+        }
+
+        public async Task ExecutarAsync()
+        {
+            ExibeArquivo(Argumento);
+        }
+
         public void ExibeArquivo(string caminhoArquivo)
         {
             using (StreamReader sr = new StreamReader(caminhoArquivo))
@@ -23,7 +32,7 @@ namespace Alura.Adopet.Console
                     System.Console.WriteLine(pet);
                 }
             }
-           
+
         }
 
     }

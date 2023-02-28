@@ -1,3 +1,4 @@
+using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Tests.Builder;
 using Alura.Adopet.Console.Tests.Validador;
 using Xunit.Abstractions;
