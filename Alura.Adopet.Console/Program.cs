@@ -2,21 +2,25 @@
 using System.Net.Http.Json;
 using Alura.Adopet.Console;
 
+// cria instância de HttpClient para consumir API Adopet
 HttpClient client = ConfiguraHttpClient("https://localhost:7136");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
-
+    // args[0] é o comando a ser executado pelo programa
     switch (args[0].Trim())
     {
         case "import":
             List<Pet> listaDePet = new List<Pet>();
 
+            // args[1] é o caminho do arquivo a ser importado
             using (StreamReader sr = new StreamReader(args[1]))
             {
                 while (!sr.EndOfStream)
                 {
+                    // separa linha usando ponto e vírgula
                     string[] propriedades = sr.ReadLine().Split(';');
+                    // cria objeto Pet a partir da separação
                     Pet pet = new Pet(Guid.Parse(propriedades[0]),
                       propriedades[1],
                       TipoPet.Cachorro
@@ -42,6 +46,7 @@ try
             break;
         case "help":
             Console.WriteLine("Lista de comandos.");
+            // se não passou mais nenhum argumento mostra help de todos os comandos
             if (args.Length == 1)
             {
                 Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
@@ -53,6 +58,7 @@ try
                 Console.WriteLine($" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." + "\n\n\n\n");
                 Console.WriteLine("Execute 'adopet.exe help [comando]' para obter mais informações sobre um comando." + "\n\n\n");
             }
+            // exibe o help daquele comando específico
             else if (args.Length == 2)
             {
                 if (args[1].Equals("import"))
@@ -69,13 +75,15 @@ try
             Console.ReadKey();
             break;
         case "show":
-
+            // args[1] é o caminho do arquivo a ser exibido
             using (StreamReader sr = new StreamReader(args[1]))
             {
                 Console.WriteLine("----- Importaddos os dados abaixo -----");
                 while (!sr.EndOfStream)
                 {
+                    // separa linha usando ponto e vírgula
                     string[] propriedades = sr.ReadLine().Split(';');
+                    // cria objeto Pet a partir da separação
                     Pet pet = new Pet(Guid.Parse(propriedades[0]),
                     propriedades[1],
                     TipoPet.Cachorro
@@ -86,12 +94,14 @@ try
             Console.ReadKey();
             break;
         default:
+            // exibe mensagem de comando inválido
             Console.WriteLine("Comando inválido!");
             break;
     }
 }
 catch (Exception ex)
 {
+    // mostra a exceção em vermelho
     Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine($"Aconteceu um exceção: {ex.Message}");
 }
