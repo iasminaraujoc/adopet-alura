@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using Alura.Adopet.Console;
 
 // cria instância de HttpClient para consumir API Adopet
-HttpClient client = ConfiguraHttpClient("https://localhost:7136");
+HttpClient client = ConfiguraHttpClient("http://localhost:5057");
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
@@ -93,6 +93,14 @@ try
             }
             Console.ReadKey();
             break;
+        case "list":
+            var pets = await ListPetsAsync();
+            foreach(var pet in pets)
+            {
+                Console.WriteLine(pet);
+            }
+            Console.ReadKey();
+            break;
         default:
             // exibe mensagem de comando inválido
             Console.WriteLine("Comando inválido!");
@@ -127,4 +135,10 @@ Task<HttpResponseMessage> CreatePetAsync(Pet pet)
     {
         return client.PostAsJsonAsync("pet/add", pet);
     }
+}
+
+async Task<IEnumerable<Pet>?> ListPetsAsync()
+{
+    HttpResponseMessage response = await client.GetAsync("pet/list");
+    return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
 }
