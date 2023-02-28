@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.API", "Alura.Adopet.API\Alura.Adopet.API\Alura.Adopet.API.csproj", "{1EFD091A-90B3-42C9-90D0-1B73FA46C5C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.API", "Alura.Adopet.API\Alura.Adopet.API.csproj", "{1EFD091A-90B3-42C9-90D0-1B73FA46C5C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.Console", "Alura.Adopet.Console\Alura.Adopet.Console\Alura.Adopet.Console.csproj", "{CDC4860C-35AD-4396-B20F-547C44F680CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.Console", "Alura.Adopet.Console\Alura.Adopet.Console.csproj", "{CDC4860C-35AD-4396-B20F-547C44F680CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.Console.Tests", "Alura.Adopet.Console\Alura.Adopet.Console.Tests\Alura.Adopet.Console.Tests.csproj", "{57EECA69-48E0-4488-945B-096EBFF59D17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alura.Adopet.Console.Tests", "Alura.Adopet.Console.Tests\Alura.Adopet.Console.Tests.csproj", "{57EECA69-48E0-4488-945B-096EBFF59D17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
