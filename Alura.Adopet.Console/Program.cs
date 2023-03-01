@@ -1,9 +1,5 @@
 ﻿using Alura.Adopet.Console;
 
-const string IMPORT = "import";
-const string HELP = "help";
-const string SHOW = "show";
-
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
@@ -11,11 +7,11 @@ try
 
     switch (comando.Trim())
     {
-        case IMPORT:
+        case "import":
             var import = new Import();
             await import.RealizaImportacaoAsync(caminhoArquivo:args[1]);
             break;
-        case HELP:
+        case "help":
             var help = new Help();
             if (args.Length == 2) 
             {
@@ -26,7 +22,7 @@ try
                 help.ExibeDocumentacao();
             }
             break;
-        case SHOW:
+        case "show":
             var show = new Show();
             show.ExibeArquivo(caminhoArquivo:args[1]);
             break;
