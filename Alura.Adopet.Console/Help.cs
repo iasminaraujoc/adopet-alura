@@ -19,9 +19,9 @@
             System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
             System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
             System.Console.WriteLine("Comando possíveis: ");
-            foreach(var item in comandos)
+            foreach(var comando in comandos)
             {
-                System.Console.WriteLine(item.Value);
+                System.Console.WriteLine(comando.Value);
             }
             System.Console.ReadKey();
         }
