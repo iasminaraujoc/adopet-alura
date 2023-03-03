@@ -1,7 +1,6 @@
 ﻿using Alura.Adopet.Console;
 
 var comandos = new ComandosDoSistema();
-
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
@@ -14,7 +13,6 @@ try
 }
 catch (Exception ex)
 {
-    // mostra a exceção em vermelho
     Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine($"Aconteceu um exceção: {ex.Message}");
 }
