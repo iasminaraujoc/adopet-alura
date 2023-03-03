@@ -10,7 +10,7 @@
             CaminhoDoArquivo = caminhoDoArquivo;
         }
 
-        public void Executar()
+        public async Task Executar()
         {
             LeitorDeArquivos leitor = new();
             List<Pet> listaDePet = leitor.RealizaLeituraArquivo(CaminhoDoArquivo);

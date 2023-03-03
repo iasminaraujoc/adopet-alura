@@ -8,20 +8,23 @@ using System.Threading.Tasks;
 
 namespace Alura.Adopet.Console
 {
-    internal class Import
+    internal class Import:IComando
     {
+        public string CaminhoDoArquivo { get; }
+        public string Documentacao => " adopet import <arquivo> comando que realiza a importação do arquivo de pets.";
         // cria instância de HttpClient para consumir API Adopet
         HttpClient client;
-        public Import()
+        public Import(string caminhoArquivo)
         {
+            CaminhoDoArquivo= caminhoArquivo;
             client = ConfiguraHttpClient("http://localhost:5057");
         }
-        public async Task RealizaImportacaoAsync(string caminhoArquivo)
+        public async Task Executar()
         {
          
             // args[1] é o caminho do arquivo a ser importado
             LeitorDeArquivos leitor = new();
-            List<Pet>  listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
+            List<Pet>  listaDePet = leitor.RealizaLeituraArquivo(CaminhoDoArquivo);
             foreach (var pet in listaDePet)
             {
                 System.Console.WriteLine(pet);

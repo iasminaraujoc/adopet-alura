@@ -9,6 +9,6 @@ namespace Alura.Adopet.Console
     internal interface IComando
     {
         string Documentacao { get; }
-        void Executar();        
+        Task Executar();        
     }
 }

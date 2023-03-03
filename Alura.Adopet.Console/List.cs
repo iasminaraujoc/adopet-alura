@@ -3,8 +3,9 @@ using System.Net.Http.Json;
 
 namespace Alura.Adopet.Console
 {
-    internal class List
+    internal class List:IComando
     {
+        public string Documentacao => " adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
         // cria instância de HttpClient para consumir API Adopet
         HttpClient client;
         public List()
@@ -17,7 +18,7 @@ namespace Alura.Adopet.Console
             return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
         }
 
-        public async Task ListPets()
+        public async Task Executar()
         {
             var pets = await ListPetsAsync();
             foreach (var pet in pets)

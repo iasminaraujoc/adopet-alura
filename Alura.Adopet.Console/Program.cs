@@ -8,17 +8,19 @@ try
     switch (args[0].Trim())
     {
         case "import":
-            var import = new Import();
-            await import.RealizaImportacaoAsync(caminhoArquivo: args[1]);            
+            var import = new Import(caminhoArquivo: args[1]);
+            await import.Executar();            
             break;
         case "help":
-            var help = new Help();
+            Help help;
             if (args.Length == 2)       
             {
-                help.HelpDoComando(comando: args[1]);
+                help = new Help(comando: args[1]);
+                help.Executar();
             }     
             else
             {
+                help = new Help();
                 help.ExibeDocumentacao();
             }
             break;
@@ -28,7 +30,7 @@ try
             break;
         case "list":
             var list = new List();
-            await list.ListPets();            
+            await list.Executar();            
             break;
         default:
             // exibe mensagem de comando inválido

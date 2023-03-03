@@ -1,14 +1,26 @@
-﻿namespace Alura.Adopet.Console
+﻿using System.Diagnostics.Metrics;
+
+namespace Alura.Adopet.Console
 {
-    internal class Help
+    internal class Help:IComando
     {
-        private Dictionary<string, string> comandos = new Dictionary<string, string>()
+        public string Documentacao  => "adopet help[comando] para obter mais informações sobre um comando.";
+        string Comando { get; }
+
+        public Help(string comando) 
         {
-            { "import",$" adopet import <arquivo> comando que realiza a importação do arquivo de pets." },
-            { "show",$" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." },
-            { "list",$" adopet list  comando que exibe no terminal o conteúdo importado no servidor." },
-            { "help",$" adopet help [comando] para obter mais informações sobre um comando." },
-        };
+            Comando = comando;
+        }
+
+        public Help() { }
+
+        //private Dictionary<string, string> comandos = new Dictionary<string, string>()
+        //{
+        //    { "import",$" adopet import <arquivo> comando que realiza a importação do arquivo de pets." },
+        //    { "show",$" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado." },
+        //    { "list",$" adopet list  comando que exibe no terminal o conteúdo importado no servidor." },
+        //    { "help",$" adopet help [comando] para obter mais informações sobre um comando." },
+        //};
         
         public void ExibeDocumentacao()
         {
@@ -25,9 +37,9 @@
             }
             System.Console.ReadKey();
         }
-        public void HelpDoComando(string comando)
+        public async Task Executar()
         {
-           var documentacaoComando = comandos[comando];
+           var documentacaoComando = comandos[Comando];
             System.Console.WriteLine(documentacaoComando);
         }
     }
