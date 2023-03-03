@@ -42,7 +42,6 @@ try
                 }
             }
             Console.WriteLine("Importação concluída!");
-            Console.ReadKey();
             break;
         case "help":
             Console.WriteLine("Lista de comandos.");
@@ -72,13 +71,12 @@ try
                         "exibe no terminal o conteúdo do arquivo importado.");
                 }
             }
-            Console.ReadKey();
             break;
         case "show":
             // args[1] é o caminho do arquivo a ser exibido
             using (StreamReader sr = new StreamReader(args[1]))
             {
-                Console.WriteLine("----- Importaddos os dados abaixo -----");
+                Console.WriteLine("----- Serão importados os dados abaixo -----");
                 while (!sr.EndOfStream)
                 {
                     // separa linha usando ponto e vírgula
@@ -91,7 +89,6 @@ try
                     Console.WriteLine(pet);
                 }
             }
-            Console.ReadKey();
             break;
         case "list":
             var pets = await ListPetsAsync();
@@ -99,7 +96,6 @@ try
             {
                 Console.WriteLine(pet);
             }
-            Console.ReadKey();
             break;
         default:
             // exibe mensagem de comando inválido
