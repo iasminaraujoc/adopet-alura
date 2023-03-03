@@ -1,7 +1,12 @@
 ﻿namespace Alura.Adopet.Console
 {
-    internal class Help: IComando
+    internal class Help: IComandoAsync
     {
+        private string? Comando { get; }
+        public Help(string? comando)
+        {
+            this.Comando = comando;
+        }
         private Dictionary<string, string> comandos = new Dictionary<string, string>()
         {
             { "import",$" adopet import <arquivo> comando que realiza a importação do arquivo de pets." },
@@ -10,10 +15,16 @@
             { "help",$" adopet help [comando] para obter mais informações sobre um comando." },
         };
 
-        public string Documentacao => comandos["help"];
+        public string Documentacao => comandos["help"];     
 
-        public void Executar()
+        public Task ExecutarAsync()
         {
+            if (!string.IsNullOrEmpty(Comando))
+            {
+                var documentacaoComando = comandos[Comando];
+                System.Console.WriteLine(documentacaoComando);
+                return Task.CompletedTask;
+            }
             System.Console.WriteLine("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
             System.Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
@@ -25,17 +36,10 @@
             {
                 System.Console.WriteLine(comando.Value);
             }
-            System.Console.ReadKey();
+
+            return Task.CompletedTask;
         }
 
-        public void ExibeDocumentacao()
-        {
-            Executar();
-        }
-        public void HelpDoComando(string comando)
-        {
-           var documentacaoComando = comandos[comando];
-            System.Console.WriteLine(documentacaoComando);
-        }
+       
     }
 }

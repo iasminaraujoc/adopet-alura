@@ -45,5 +45,6 @@ namespace Alura.Adopet.Console
         {
             await ListPets();
         }
+    
     }
 }
