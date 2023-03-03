@@ -8,8 +8,8 @@ try
     switch (args[0].Trim())
     {
         case "import":
-            var import = new Import();
-            await import.RealizaImportacaoAsync(caminhoArquivo: args[1]);            
+            var import = new Import(caminhoDoArquivo: args[1]);
+            await import.ExecutarAsync();            
             break;
         case "help":
             var help = new Help();
@@ -19,7 +19,7 @@ try
             }     
             else
             {
-                help.ExibeDocumentacao();
+                help.Executar();
             }
             break;
         case "show":

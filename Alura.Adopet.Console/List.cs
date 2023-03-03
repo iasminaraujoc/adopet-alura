@@ -1,12 +1,16 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 
 namespace Alura.Adopet.Console
 {
-    internal class List
+    internal class List:IComandoAsync
     {
         // cria instância de HttpClient para consumir API Adopet
         HttpClient client;
+
+        public string Documentacao => " adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
+
         public List()
         {
             client = ConfiguraHttpClient("http://localhost:5057");
@@ -35,6 +39,11 @@ namespace Alura.Adopet.Console
                 new MediaTypeWithQualityHeaderValue("application/json"));
             _client.BaseAddress = new Uri(url);
             return _client;
+        }
+
+        public async Task ExecutarAsync()
+        {
+            await ListPets();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Alura.Adopet.Console
 {
-    internal class Help
+    internal class Help: IComando
     {
         private Dictionary<string, string> comandos = new Dictionary<string, string>()
         {
@@ -9,8 +9,10 @@
             { "list",$" adopet list  comando que exibe no terminal o conteúdo importado no servidor." },
             { "help",$" adopet help [comando] para obter mais informações sobre um comando." },
         };
-        
-        public void ExibeDocumentacao()
+
+        public string Documentacao => comandos["help"];
+
+        public void Executar()
         {
             System.Console.WriteLine("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
@@ -19,11 +21,16 @@
             System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
             System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
             System.Console.WriteLine("Comando possíveis: ");
-            foreach(var comando in comandos)
+            foreach (var comando in comandos)
             {
                 System.Console.WriteLine(comando.Value);
             }
             System.Console.ReadKey();
+        }
+
+        public void ExibeDocumentacao()
+        {
+            Executar();
         }
         public void HelpDoComando(string comando)
         {

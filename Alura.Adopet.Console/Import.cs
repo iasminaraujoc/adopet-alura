@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Alura.Adopet.Console
 {
-    internal class Import
+    internal class Import:IComandoAsync
     {
         // cria instância de HttpClient para consumir API Adopet
         HttpClient client;
-        public Import()
+
+        public string CaminhoDoArquivo { get;  }
+   
+        public string Documentacao => " adopet import <arquivo> comando que realiza a importação do arquivo de pets.";
+
+        public Import(string caminhoDoArquivo)
         {
+            this.CaminhoDoArquivo = caminhoDoArquivo;
             client = ConfiguraHttpClient("http://localhost:5057");
         }
         public async Task RealizaImportacaoAsync(string caminhoArquivo)
@@ -55,6 +57,11 @@ namespace Alura.Adopet.Console
                 new MediaTypeWithQualityHeaderValue("application/json"));
             _client.BaseAddress = new Uri(url);
             return _client;
+        }
+
+        public async Task ExecutarAsync()
+        {
+           await RealizaImportacaoAsync(CaminhoDoArquivo);
         }
     }
 
