@@ -2,7 +2,7 @@
 {
     internal interface IComandoAsync
     {
-        public string Documentacao { get;}
-        public Task ExecutarAsync();
+        string Documentacao { get; }
+        Task ExecutarAsync(string[] args);
     }
 }

@@ -1,20 +1,14 @@
 ﻿namespace Alura.Adopet.Console
 {
-    internal class Show:IComandoAsync
+    internal class Show: IComandoAsync
     {
-        public string CaminhoDoArquivo { get; }
-        public string Documentacao => "adopet show  <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
-
-        public Show(string caminhoDoArquivo)
+        public string Documentacao => " adopet show  <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
+              
+        public Task ExecutarAsync(string[] args)
         {
-            CaminhoDoArquivo = caminhoDoArquivo;
-        }
-
-      
-        public Task ExecutarAsync()
-        {
+            var caminhoArquivo = args[1];
             LeitorDeArquivos leitor = new();
-            List<Pet> listaDePet = leitor.RealizaLeituraArquivo(CaminhoDoArquivo);
+            List<Pet> listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
             foreach (Pet pet in listaDePet)
             {
                 System.Console.WriteLine(pet);

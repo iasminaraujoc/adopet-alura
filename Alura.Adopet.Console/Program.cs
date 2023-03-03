@@ -1,41 +1,16 @@
 ﻿using Alura.Adopet.Console;
 
+var comandos = new ComandosDoSistema();
+
 Console.ForegroundColor = ConsoleColor.Green;
 try
 {
-    // args[0] é o comando a ser executado pelo programa
-    switch (args[0].Trim())
+    if (args.Length > 0)
     {
-        case "import":
-            var import = new Import(caminhoDoArquivo: args[1]);
-            await import.ExecutarAsync();            
-            break;
-        case "help":           
-           
-            if (args.Length == 2)       
-            {
-                var help = new Help(comando: args[1]);
-                await help.ExecutarAsync();
-            }     
-            else
-            {
-                var help = new Help(null);
-                await help.ExecutarAsync();
-            }
-            break;
-        case "show":
-            var show = new Show(caminhoDoArquivo: args[1]);
-            await show.ExecutarAsync();    
-            break;
-        case "list":
-            var list = new List();
-            await list.ExecutarAsync();           
-            break;
-        default:
-            // exibe mensagem de comando inválido
-            Console.WriteLine("Comando inválido!");
-            break;
+        var comando = comandos[args[0]];
+        await comando.ExecutarAsync(args);
     }
+    else Console.WriteLine("Comando inválido!"); 
 }
 catch (Exception ex)
 {
