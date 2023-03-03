@@ -10,8 +10,7 @@ try
             var import = new Import(caminhoDoArquivo: args[1]);
             await import.ExecutarAsync();            
             break;
-        case "help":
-            
+        case "help":           
            
             if (args.Length == 2)       
             {
