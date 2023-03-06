@@ -12,7 +12,7 @@
 
         public void ExibeDocumentacao()
         {
-            Console.WriteLine("Lista de comandos.");
+            System.Console.WriteLine("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
             System.Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
                     "comando que exibe informações de ajuda dos comandos.");
