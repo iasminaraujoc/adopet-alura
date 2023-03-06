@@ -23,8 +23,8 @@ try
             }
             break;
         case "show":
-            var show = new Show(caminhoDoArquivo: args[1]);
-            show.Executar();    
+            var show = new Show();
+            show.ExibeArquivos(caminhoArquivo: args[1]);    
             break;
         case "list":
             var list = new List();

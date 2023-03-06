@@ -7,9 +7,11 @@ namespace Alura.Adopet.Console
     {
         // cria instância de HttpClient para consumir API Adopet
         HttpClient client;
+        HttpClientPet clientPet;
         public List()
         {
-            client = ConfiguraHttpClient("http://localhost:5057");
+            this.clientPet = new HttpClientPet();
+            this.client = clientPet.GetHttpClient();
         }
         public async Task<IEnumerable<Pet>?> ListPetsAsync()
         {
@@ -26,15 +28,6 @@ namespace Alura.Adopet.Console
             }
             System.Console.ReadKey();
         }
-
-        HttpClient ConfiguraHttpClient(string url)
-        {
-            HttpClient _client = new HttpClient();
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            _client.BaseAddress = new Uri(url);
-            return _client;
-        }
+       
     }
 }
