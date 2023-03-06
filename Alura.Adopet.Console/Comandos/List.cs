@@ -1,7 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Util;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
     internal class List
     {
@@ -10,8 +12,8 @@ namespace Alura.Adopet.Console
         HttpClientPet clientPet;
         public List()
         {
-            this.clientPet = new HttpClientPet();
-            this.client = clientPet.GetHttpClient();
+            clientPet = new HttpClientPet();
+            client = clientPet.GetHttpClient();
         }
         public async Task<IEnumerable<Pet>?> ListPetsAsync()
         {
@@ -28,6 +30,6 @@ namespace Alura.Adopet.Console
             }
             System.Console.ReadKey();
         }
-       
+
     }
 }

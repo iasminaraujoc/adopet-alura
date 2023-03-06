@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Alura.Adopet.Console.Modelos;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Util
 {
     internal class LeitorDeArquivos
     {
@@ -21,7 +22,7 @@ namespace Alura.Adopet.Console
                     Pet pet = new Pet(Guid.Parse(propriedades[0]),
                       propriedades[1],
                       TipoPet.Cachorro
-                     );                   
+                     );
                     lista.Add(pet);
                 }
             }

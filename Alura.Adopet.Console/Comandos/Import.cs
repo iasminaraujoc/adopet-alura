@@ -1,7 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Util;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Comandos
 {
     internal class Import
     {
@@ -10,16 +12,16 @@ namespace Alura.Adopet.Console
         HttpClientPet clientPet;
         public Import()
         {
-            this.clientPet = new HttpClientPet();
-            this.client = clientPet.GetHttpClient();
+            clientPet = new HttpClientPet();
+            client = clientPet.GetHttpClient();
         }
-        
+
         public async Task RealizaImportacaoAsync(string caminhoArquivo)
         {
-         
+
             // args[1] é o caminho do arquivo a ser importado
             LeitorDeArquivos leitor = new();
-            List<Pet>  listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
+            List<Pet> listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
             foreach (var pet in listaDePet)
             {
                 System.Console.WriteLine(pet);
@@ -45,7 +47,7 @@ namespace Alura.Adopet.Console
             }
         }
 
-       
+
     }
 
 }

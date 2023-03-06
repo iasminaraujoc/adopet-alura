@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace Alura.Adopet.Console
+namespace Alura.Adopet.Console.Util
 {
     internal class HttpClientPet
     {
