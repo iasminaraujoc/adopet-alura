@@ -3,8 +3,9 @@ using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos
 {
-    internal class Show
+    internal class Show : IComando
     {
+        public string Documentacao => $" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
         public void ExibeArquivos(string caminhoArquivo)
         {
             LeitorDeArquivos leitor = new();

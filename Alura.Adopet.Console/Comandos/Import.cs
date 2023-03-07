@@ -4,13 +4,15 @@ using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos
 {
-    internal class Import
+    internal class Import : IComando
     {
         PetService clientPet;
         public Import()
         {
             clientPet = new PetService();
         }
+
+        public string Documentacao => $" adopet import <arquivo> comando que realiza a importação do arquivo de pets.";
 
         public async Task RealizaImportacaoAsync(string caminhoArquivo)
         {
