@@ -1,29 +1,20 @@
-﻿using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Util;
+﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Services;
 
 namespace Alura.Adopet.Console.Comandos
 {
     internal class List
     {
-        // cria instância de HttpClient para consumir API Adopet
-        HttpClient client;
-        HttpClientPet clientPet;
+        PetService clientPet;
+
         public List()
         {
-            clientPet = new HttpClientPet();
-            client = clientPet.GetHttpClient();
-        }
-        public async Task<IEnumerable<Pet>?> ListPetsAsync()
-        {
-            HttpResponseMessage response = await client.GetAsync("pet/list");
-            return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
+            clientPet = new PetService();
         }
 
         public async Task ListPets()
         {
-            var pets = await ListPetsAsync();
+            var pets = await clientPet.ListAsync();
             foreach (var pet in pets)
             {
                 System.Console.WriteLine(pet);

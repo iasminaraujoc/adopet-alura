@@ -1,19 +1,15 @@
-﻿using System.Net.Http.Headers;
-using System.Net.Http.Json;
-using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.Services;
 using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos
 {
     internal class Import
     {
-        // cria instância de HttpClient para consumir API Adopet
-        HttpClient client;
-        HttpClientPet clientPet;
+        PetService clientPet;
         public Import()
         {
-            clientPet = new HttpClientPet();
-            client = clientPet.GetHttpClient();
+            clientPet = new PetService();
         }
 
         public async Task RealizaImportacaoAsync(string caminhoArquivo)
@@ -27,7 +23,7 @@ namespace Alura.Adopet.Console.Comandos
                 System.Console.WriteLine(pet);
                 try
                 {
-                    var resposta = await CreatePetAsync(pet);
+                    await clientPet.CreatePetAsync(pet);
                 }
                 catch (Exception ex)
                 {
@@ -37,16 +33,6 @@ namespace Alura.Adopet.Console.Comandos
             System.Console.WriteLine("Importação concluída!");
             System.Console.ReadKey();
         }
-
-        Task<HttpResponseMessage> CreatePetAsync(Pet pet)
-        {
-            HttpResponseMessage? response = null;
-            using (response = new HttpResponseMessage())
-            {
-                return client.PostAsJsonAsync("pet/add", pet);
-            }
-        }
-
 
     }
 
