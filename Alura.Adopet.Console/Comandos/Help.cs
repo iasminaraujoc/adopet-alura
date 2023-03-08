@@ -6,7 +6,6 @@
 
         public void ExibeDocumentacao()
         {
-            var comandos = new ComandosDoSistema();
             System.Console.WriteLine("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
             System.Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
@@ -14,7 +13,7 @@
             System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
             System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
             System.Console.WriteLine("Comando possíveis: ");
-            foreach (var cmd in comandos)
+            foreach (var cmd in ComandosDoSistema.COMANDOS)
             {
                 System.Console.WriteLine(cmd.Documentacao);
             }
@@ -22,9 +21,9 @@
         }
         public void HelpDoComando(string comando)
         {
-            var comandos = new ComandosDoSistema();
-            var documentacaoComando = comandos[comando];
-            System.Console.WriteLine(documentacaoComando);
+            var cmd = ComandosDoSistema.COMANDOS[comando];
+            if (cmd is not null)
+                System.Console.WriteLine(cmd.Documentacao);
         }
     }
 }

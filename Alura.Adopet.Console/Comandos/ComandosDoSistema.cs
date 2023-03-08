@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,16 @@ namespace Alura.Adopet.Console.Comandos
 {
     internal class ComandosDoSistema : IEnumerable<IComando>
     {
+        private static ComandosDoSistema _comandos;
+        public static ComandosDoSistema COMANDOS
+        {
+            get
+            {
+                if (_comandos is null) _comandos = new();
+                return _comandos;
+            }
+        }
+
         // comandos que o sistema suporta (funções do sistema)
         private Dictionary<string, IComando> comandos = new()
         {
