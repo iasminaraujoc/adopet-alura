@@ -3,6 +3,7 @@ using Alura.Adopet.Console.Services;
 
 namespace Alura.Adopet.Console.Comandos
 {
+    [Util.DocumentacaoDoComando($" adopet list  comando que exibe no terminal o conteúdo importado no servidor.")]
     internal class List : IComando
     {
         PetService clientPet;
@@ -11,8 +12,6 @@ namespace Alura.Adopet.Console.Comandos
         {
             clientPet = new PetService();
         }
-
-        public string Documentacao => $" adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
 
         public async Task ExecutarAsync(string[] args)
         {

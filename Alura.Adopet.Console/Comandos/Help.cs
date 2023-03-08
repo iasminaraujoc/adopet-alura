@@ -1,14 +1,23 @@
-﻿namespace Alura.Adopet.Console.Comandos
+﻿using System.Reflection;
+
+namespace Alura.Adopet.Console.Comandos
 {
+    [Util.DocumentacaoDoComando($" adopet help [comando] para obter mais informações sobre um comando.")]
     internal class Help : IComando
     {
-        public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
-
         public Task ExecutarAsync(string[] args)
         {
             if (args.Length == 2) this.HelpDoComando(comando: args[1]);
             else this.ExibeDocumentacao();
             return Task.CompletedTask;
+        }
+
+        private string RecuperaDocumentacao(IComando comando)
+        {
+            Type tipoComando = comando.GetType();
+            var doc = tipoComando.GetCustomAttributes<Util.DocumentacaoDoComando>().FirstOrDefault();
+            if (doc is not null) return doc.Texto;
+            return string.Empty;
         }
 
         public void ExibeDocumentacao()
@@ -22,7 +31,7 @@
             System.Console.WriteLine("Comando possíveis: ");
             foreach (var cmd in ComandosDoSistema.COMANDOS)
             {
-                System.Console.WriteLine(cmd.Documentacao);
+                System.Console.WriteLine(this.RecuperaDocumentacao(cmd));
             }
             System.Console.ReadKey();
         }
@@ -30,7 +39,7 @@
         {
             var cmd = ComandosDoSistema.COMANDOS[comando];
             if (cmd is not null)
-                System.Console.WriteLine(cmd.Documentacao);
+                System.Console.WriteLine(this.RecuperaDocumentacao(cmd));
         }
     }
 }
