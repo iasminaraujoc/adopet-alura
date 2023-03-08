@@ -1,7 +1,10 @@
 using Alura.Adopet.API.Controladores;
 using Alura.Adopet.API.Dados.Context;
+using Alura.Adopet.API.Dominio.Dto;
 using Alura.Adopet.API.Service.Interface;
 using Alura.Adopet.API.Startup;
+using Alura.Adopet.API.Validations;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);// Criando uma aplicação Web.
@@ -20,7 +23,6 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 //DI
 builder.Services.ConfigureDI();
-
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Habilitando o swagger
