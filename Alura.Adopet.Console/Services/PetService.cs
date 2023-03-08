@@ -10,7 +10,7 @@ namespace Alura.Adopet.Console.Services
 
         public PetService()
         {
-            client = ConfiguraHttpClient("http://localhost:5057");
+            client = ConfiguraHttpClient("http://localhost:5056");
         }
 
         private HttpClient ConfiguraHttpClient(string url)
