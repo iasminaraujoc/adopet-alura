@@ -2,7 +2,7 @@
 
 namespace Alura.Adopet.API.Dominio.Entity
 {
-    internal class Cliente
+    public class Cliente
     {
         public Cliente()
         {

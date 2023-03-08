@@ -1,4 +1,4 @@
-﻿namespace Alura.Adopet.API.Service
+﻿namespace Alura.Adopet.API.Service.Interface
 {
     public interface IEventoService
     {

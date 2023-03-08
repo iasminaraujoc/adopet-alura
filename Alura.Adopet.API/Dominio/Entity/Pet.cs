@@ -1,9 +1,9 @@
-﻿using Alura.Adopet.API.Util;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Alura.Adopet.API.Dominio.Enum;
 
 namespace Alura.Adopet.API.Dominio.Entity
 {
-    internal class Pet
+    public class Pet
     {
         public Pet()
         {
