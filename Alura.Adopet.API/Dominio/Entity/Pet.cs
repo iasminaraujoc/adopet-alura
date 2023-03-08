@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Alura.Adopet.API.Dominio.Enum;
+using Alura.Adopet.API.Dominio.Entity.Enum;
 
 namespace Alura.Adopet.API.Dominio.Entity
 {

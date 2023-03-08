@@ -9,12 +9,9 @@ namespace Alura.Adopet.API.Controladores
         public static void AddEndpointsCliente(this WebApplication app)
         {
 
-            #region Pet
-   
-     
-
+            #region cliente     
             // Listar todas os clientes.
-            app.MapGet("v1/cliente/listar-cliente", async ([FromServices] IClienteService service) =>
+            app.MapGet("v1/cliente/listar", async ([FromServices] IClienteService service) =>
             {
                 return Results.Ok(await service.BuscaClientAsync());
             });

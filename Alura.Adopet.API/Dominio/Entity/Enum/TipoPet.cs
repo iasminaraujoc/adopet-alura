@@ -1,4 +1,4 @@
-﻿namespace Alura.Adopet.API.Dominio.Enum
+﻿namespace Alura.Adopet.API.Dominio.Entity.Enum
 {
     public enum TipoPet
     {

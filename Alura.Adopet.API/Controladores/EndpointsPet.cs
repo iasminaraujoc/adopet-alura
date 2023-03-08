@@ -11,13 +11,13 @@ namespace Alura.Adopet.API.Controladores
 
             #region Pet
             //Endpoints
-            app.MapPost("v1/pet/salvar-pet", ([FromServices] IPetService service, [FromBody] Pet pet) =>
+            app.MapPost("v1/pet/salvar", ([FromServices] IPetService service, [FromBody] Pet pet) =>
             {
                 return service.SalvarPet(pet);
             });
 
             // Listar todas os pets.
-            app.MapGet("v1/pet/listar-pet", async ([FromServices] IPetService service) =>
+            app.MapGet("v1/pet/listar", async ([FromServices] IPetService service) =>
             {
                 return Results.Ok(await service.BuscaPetAsync());
             });

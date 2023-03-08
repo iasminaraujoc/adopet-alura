@@ -1,7 +1,7 @@
 ﻿using Alura.Adopet.API.Dados.Context;
 using Alura.Adopet.API.Dados.UofW;
 using Alura.Adopet.API.Dominio.Entity;
-using Alura.Adopet.API.Dominio.Enum;
+using Alura.Adopet.API.Dominio.Entity.Enum;
 using Alura.Adopet.API.Service.Interface;
 
 namespace Alura.Adopet.API.Service

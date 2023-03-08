@@ -1,13 +1,7 @@
-using Alura.Adopet.API.Base;
 using Alura.Adopet.API.Controladores;
 using Alura.Adopet.API.Dados.Context;
-using Alura.Adopet.API.Dados.Repository;
-using Alura.Adopet.API.Dados.UofW;
-using Alura.Adopet.API.Dominio.Entity;
-using Alura.Adopet.API.Service;
 using Alura.Adopet.API.Service.Interface;
 using Alura.Adopet.API.Startup;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);// Criando uma aplicação Web.
@@ -19,7 +13,6 @@ builder.Services.AddDbContext<DataBaseContext>(opt =>
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -36,9 +29,9 @@ builder.Services.AddSwaggerGen();
 var serviceProvider = builder.Services.BuildServiceProvider();
 var eventoService = serviceProvider.GetService<IEventoService>();
 
+//Gerando dados fake.
 var app = builder.Build();
 eventoService.GenerateFakeDate();
-
 
 // Ativando o Swagger
 app.UseSwagger();
