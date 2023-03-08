@@ -5,7 +5,7 @@ try
 {
     var instrucao = args[0]; 
     var comando = ComandosDoSistema.COMANDOS[instrucao];
-    if (comando is not null) comando.Executar(args);
+    if (comando is not null) await comando.ExecutarAsync(args);
     else Console.WriteLine("Comando inválido");
 }
 catch (Exception ex)

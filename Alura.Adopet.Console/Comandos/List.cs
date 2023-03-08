@@ -14,9 +14,9 @@ namespace Alura.Adopet.Console.Comandos
 
         public string Documentacao => $" adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
 
-        public void Executar(string[] args)
+        public async Task ExecutarAsync(string[] args)
         {
-            this.ListPets().GetAwaiter().GetResult();
+            await this.ListPets();
         }
 
         public async Task ListPets()

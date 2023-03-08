@@ -4,10 +4,11 @@
     {
         public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
 
-        public void Executar(string[] args)
+        public Task ExecutarAsync(string[] args)
         {
             if (args.Length == 2) this.HelpDoComando(comando: args[1]);
             else this.ExibeDocumentacao();
+            return Task.CompletedTask;
         }
 
         public void ExibeDocumentacao()

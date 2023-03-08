@@ -7,9 +7,10 @@ namespace Alura.Adopet.Console.Comandos
     {
         public string Documentacao => $" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
 
-        public void Executar(string[] args)
+        public Task ExecutarAsync(string[] args)
         {
             this.ExibeArquivos(caminhoArquivo: args[1]);
+            return Task.CompletedTask;
         }
 
         public void ExibeArquivos(string caminhoArquivo)
