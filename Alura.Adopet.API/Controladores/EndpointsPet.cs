@@ -1,4 +1,5 @@
-﻿using Alura.Adopet.API.Dominio.Entity;
+﻿using Alura.Adopet.API.Dominio.Dto;
+using Alura.Adopet.API.Dominio.Entity;
 using Alura.Adopet.API.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,7 @@ namespace Alura.Adopet.API.Controladores
 
             #region Pet
             //Endpoints
-            app.MapPost("v1/pet/salvar", ([FromServices] IPetService service, [FromBody] Pet pet) =>
+            app.MapPost("v1/pet/salvar", ([FromServices] IPetService service, [FromBody] PetDTO pet) =>
             {
                 return service.SalvarPet(pet);
             });

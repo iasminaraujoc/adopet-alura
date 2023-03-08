@@ -21,6 +21,8 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 //DI
 builder.Services.ConfigureDI();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 //Habilitando o swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

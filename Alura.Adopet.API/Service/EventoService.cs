@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.API.Dados.Context;
 using Alura.Adopet.API.Dados.UofW;
+using Alura.Adopet.API.Dominio.Dto;
 using Alura.Adopet.API.Dominio.Entity;
 using Alura.Adopet.API.Dominio.Entity.Enum;
 using Alura.Adopet.API.Service.Interface;
@@ -18,11 +19,11 @@ namespace Alura.Adopet.API.Service
         public void GenerateFakeDate()
         {          
 
-            var pet = new Pet()
+            var pet = new PetDTO()
             {
                 Nome = "Sábio",
                 Tipo = TipoPet.Gato,
-                Proprietario = new Cliente()
+                Proprietario = new ClienteDTO()
                 {
                     CPF = "111.111.111-22",
                     Nome = "André",

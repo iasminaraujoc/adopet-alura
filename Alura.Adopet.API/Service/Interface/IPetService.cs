@@ -1,10 +1,11 @@
-﻿using Alura.Adopet.API.Dominio.Entity;
+﻿using Alura.Adopet.API.Dominio.Dto;
+using Alura.Adopet.API.Dominio.Entity;
 
 namespace Alura.Adopet.API.Service.Interface
 {
     public interface IPetService
     {
-        Task<IEnumerable<Pet>?> BuscaPetAsync();
-        Task SalvarPet(Pet obj);
+        Task<IEnumerable<PetDTO>?> BuscaPetAsync();
+        Task SalvarPet(PetDTO obj);
     }
 }
