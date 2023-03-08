@@ -43,7 +43,7 @@ namespace Alura.Adopet.Console.Comandos
             HttpResponseMessage? response = null;
             using (response = new HttpResponseMessage())
             {
-                return client.PostAsJsonAsync("pet/add", pet);
+                return client.PostAsJsonAsync("v1/pet/salvar", pet);
             }
         }
 

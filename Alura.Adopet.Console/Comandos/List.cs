@@ -17,7 +17,7 @@ namespace Alura.Adopet.Console.Comandos
         }
         public async Task<IEnumerable<Pet>?> ListPetsAsync()
         {
-            HttpResponseMessage response = await client.GetAsync("pet/list");
+            HttpResponseMessage response = await client.GetAsync("v1/pet/listar");
             return await response.Content.ReadFromJsonAsync<IEnumerable<Pet>>();
         }
 
