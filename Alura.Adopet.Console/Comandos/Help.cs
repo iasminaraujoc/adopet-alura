@@ -4,6 +4,12 @@
     {
         public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
 
+        public void Executar(string[] args)
+        {
+            if (args.Length == 2) this.HelpDoComando(comando: args[1]);
+            else this.ExibeDocumentacao();
+        }
+
         public void ExibeDocumentacao()
         {
             System.Console.WriteLine("Lista de comandos.");

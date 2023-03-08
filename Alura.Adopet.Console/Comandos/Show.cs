@@ -6,6 +6,12 @@ namespace Alura.Adopet.Console.Comandos
     internal class Show : IComando
     {
         public string Documentacao => $" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
+
+        public void Executar(string[] args)
+        {
+            this.ExibeArquivos(caminhoArquivo: args[1]);
+        }
+
         public void ExibeArquivos(string caminhoArquivo)
         {
             LeitorDeArquivos leitor = new();

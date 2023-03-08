@@ -14,6 +14,11 @@ namespace Alura.Adopet.Console.Comandos
 
         public string Documentacao => $" adopet import <arquivo> comando que realiza a importação do arquivo de pets.";
 
+        public void Executar(string[] args)
+        {
+            RealizaImportacaoAsync(caminhoArquivo: args[1]).GetAwaiter().GetResult();
+        }
+
         public async Task RealizaImportacaoAsync(string caminhoArquivo)
         {
 
