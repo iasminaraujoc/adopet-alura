@@ -12,7 +12,8 @@ namespace Alura.Adopet.Console.Comandos
             clientPet = new PetService();
         }
 
-        public string Documentacao => $" adopet import <arquivo> comando que realiza a importação do arquivo de pets.";
+        [DocAttributes("import")]
+        public string Documentacao;        
 
         public async Task ExecutarAsync(string[] args)
         {

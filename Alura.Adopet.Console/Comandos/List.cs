@@ -12,8 +12,9 @@ namespace Alura.Adopet.Console.Comandos
             clientPet = new PetService();
         }
 
-        public string Documentacao => $" adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
-
+        //public string Documentacao => $" adopet list  comando que exibe no terminal o conteúdo importado no servidor.";
+        [DocAttributes("list")]
+        public string Documentacao;
         public async Task ExecutarAsync(string[] args)
         {
             await this.ListPets();
