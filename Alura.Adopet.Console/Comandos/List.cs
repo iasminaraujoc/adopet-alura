@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Services;
+using Alura.Adopet.Console.UI;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -24,9 +25,8 @@ namespace Alura.Adopet.Console.Comandos
             var pets = await clientPet.ListAsync();
             foreach (var pet in pets)
             {
-                System.Console.WriteLine(pet);
-            }
-            System.Console.ReadKey();
+                InterfaceComUsuario.ExibeInformacao(pet.ToString());
+            }         
         }
 
     }

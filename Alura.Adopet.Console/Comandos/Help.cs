@@ -1,4 +1,6 @@
-﻿namespace Alura.Adopet.Console.Comandos
+﻿using Alura.Adopet.Console.UI;
+
+namespace Alura.Adopet.Console.Comandos
 {
     internal class Help : IComando
     {
@@ -13,24 +15,23 @@
 
         public void ExibeDocumentacao()
         {
-            System.Console.WriteLine("Lista de comandos.");
+            InterfaceComUsuario.ExibeInformacao("Lista de comandos.");
             // se não passou mais nenhum argumento mostra help de todos os comandos
-            System.Console.WriteLine("adopet help <parametro> ous simplemente adopet help  " +
+            InterfaceComUsuario.ExibeInformacao("adopet help <parametro> ous simplemente adopet help  " +
                     "comando que exibe informações de ajuda dos comandos.");
-            System.Console.WriteLine("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
-            System.Console.WriteLine("Realiza a importação em lote de um arquivos de pets.");
+            InterfaceComUsuario.ExibeInformacao("Adopet (1.0) - Aplicativo de linha de comando (CLI).");
+            InterfaceComUsuario.ExibeInformacao("Realiza a importação em lote de um arquivos de pets.");
             System.Console.WriteLine("Comando possíveis: ");
             foreach (var cmd in ComandosDoSistema.COMANDOS)
             {
-                System.Console.WriteLine(cmd.Documentacao);
-            }
-            System.Console.ReadKey();
+                InterfaceComUsuario.ExibeInformacao(cmd.Documentacao);
+            }            
         }
         public void HelpDoComando(string comando)
         {
             var cmd = ComandosDoSistema.COMANDOS[comando];
             if (cmd is not null)
-                System.Console.WriteLine(cmd.Documentacao);
+                InterfaceComUsuario.ExibeInformacao(cmd.Documentacao);
         }
     }
 }

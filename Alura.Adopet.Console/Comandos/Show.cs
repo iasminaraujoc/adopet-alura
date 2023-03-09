@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.Modelos;
+using Alura.Adopet.Console.UI;
 using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos
@@ -19,9 +20,8 @@ namespace Alura.Adopet.Console.Comandos
             List<Pet> listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
             foreach (Pet pet in listaDePet)
             {
-                System.Console.WriteLine(pet);
-            }
-            System.Console.ReadKey();
+                InterfaceComUsuario.ExibeInformacao(pet.ToString());
+            }          
         }
 
     }

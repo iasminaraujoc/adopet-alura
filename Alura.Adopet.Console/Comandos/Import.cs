@@ -1,5 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
 using Alura.Adopet.Console.Services;
+using Alura.Adopet.Console.UI;
 using Alura.Adopet.Console.Util;
 
 namespace Alura.Adopet.Console.Comandos
@@ -27,18 +28,17 @@ namespace Alura.Adopet.Console.Comandos
             List<Pet> listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
             foreach (var pet in listaDePet)
             {
-                System.Console.WriteLine(pet);
+                InterfaceComUsuario.ExibeInformacao(pet.ToString());
                 try
                 {
                     await clientPet.CreatePetAsync(pet);
                 }
                 catch (Exception ex)
                 {
-                    System.Console.WriteLine(ex.Message);
+                    InterfaceComUsuario.ExibeInformacao(ex.Message);
                 }
             }
-            System.Console.WriteLine("Importação concluída!");
-            System.Console.ReadKey();
+            InterfaceComUsuario.ExibeInformacao("Importação concluída!");           
         }
 
     }
