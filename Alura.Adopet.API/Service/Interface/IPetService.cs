@@ -7,5 +7,6 @@ namespace Alura.Adopet.API.Service.Interface
     {
         Task<IEnumerable<PetDTO>?> BuscaPetAsync();
         Task SalvarPet(PetDTO obj);
+        PetDTO BuscarPorID(Guid id);
     }
 }

@@ -36,7 +36,16 @@ namespace Alura.Adopet.API.Dados.UofW
 
         public void Commit()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
         }
         public void Dispose()
         {

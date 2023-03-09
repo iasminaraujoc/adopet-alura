@@ -16,7 +16,16 @@ namespace Alura.Adopet.API.Base
 
             public void Add(T entity)
             {
-                _context.Set<T>().Add(entity);
+                try
+                {
+                  _context.Set<T>().Add(entity);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
+                }
+            
             }
 
             public void Delete(T entity)

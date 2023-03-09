@@ -32,7 +32,17 @@ namespace Alura.Adopet.API.Controladores
                     return Results.Problem(mensagem);
                 }
 
-                return Results.Ok(service.SalvarPet(pet));
+                try
+                {
+                    return Results.Ok(service.SalvarPet(pet));
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
+                }
+
+                
             });
 
             // Listar todas os pets.

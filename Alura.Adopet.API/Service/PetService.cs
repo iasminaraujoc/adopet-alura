@@ -20,7 +20,16 @@ namespace Alura.Adopet.API.Service
             var retorno = await _uofW.PetRepository.Get();
             IEnumerable<PetDTO> petsDTO = _mapper.Map<IEnumerable<Pet>, IEnumerable<PetDTO>>(retorno);
             return petsDTO;
-        }    
+        }
+
+        public PetDTO BuscarPorID(Guid id)
+        {
+
+            var retorno = _uofW.PetRepository.GetById(x=>x.Id==id);
+            var petDto = _mapper.Map<Pet,PetDTO>(retorno);
+            return petDto;
+        }
+
 
         public Task SalvarPet(PetDTO? obj)
         {

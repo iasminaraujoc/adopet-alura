@@ -4,6 +4,7 @@ using Alura.Adopet.API.Dominio.Dto;
 using Alura.Adopet.API.Service.Interface;
 using Alura.Adopet.API.Startup;
 using Alura.Adopet.API.Validations;
+using APICatalogo.Extensions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,5 +50,6 @@ app.UseSwaggerUI(
         c.RoutePrefix = string.Empty;
     }
 );
+app.ConfigureExceptionHandler();
 // Roda a aplicação
 app.Run();
