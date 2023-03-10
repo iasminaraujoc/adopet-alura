@@ -6,7 +6,11 @@ try
 {
     var instrucao = args[0]; 
     var comando = ComandosDoSistema.COMANDOS[instrucao];
-    if (comando is not null) await comando.ExecutarAsync(args);
+    if (comando is not null)
+    {
+      var resultado = await comando.ExecutarAsync(args);
+      InterfaceComUsuario.ExibeInformacao(resultado);
+    }
     else InterfaceComUsuario.ExibeInformacao("Comando inválido");
 }
 catch (Exception ex)

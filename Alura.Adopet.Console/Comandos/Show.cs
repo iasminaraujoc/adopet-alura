@@ -8,20 +8,22 @@ namespace Alura.Adopet.Console.Comandos
     {
         public string Documentacao => $" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
 
-        public Task ExecutarAsync(string[] args)
+        public Task<List<string>> ExecutarAsync(string[] args)
         {
-            this.ExibeArquivos(caminhoArquivo: args[1]);
-            return Task.CompletedTask;
+            var retorno = this.ExibeArquivos(caminhoArquivo: args[1]);
+            return Task.FromResult(retorno);
         }
 
-        public void ExibeArquivos(string caminhoArquivo)
+        public List<string> ExibeArquivos(string caminhoArquivo)
         {
+            var retorno = new List<string>();
             LeitorDeArquivos leitor = new();
             List<Pet> listaDePet = leitor.RealizaLeituraArquivo(caminhoArquivo);
             foreach (Pet pet in listaDePet)
             {
-                InterfaceComUsuario.ExibeInformacao(pet.ToString());
-            }          
+               retorno.Add(pet.ToString());
+            }
+            return retorno;
         }
 
     }
