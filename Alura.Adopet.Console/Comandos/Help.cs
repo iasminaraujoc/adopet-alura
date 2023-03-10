@@ -14,7 +14,7 @@ namespace Alura.Adopet.Console.Comandos
             return Task.FromResult(retorno);
         }
 
-        public List<string> ExibeDocumentacao()
+        private List<string> ExibeDocumentacao()
         {
             var retorno = new List<string>();
             retorno.Add("Lista de comandos.");
@@ -31,7 +31,7 @@ namespace Alura.Adopet.Console.Comandos
             
             return retorno;
         }
-        public List<string> HelpDoComando(string comando)
+        private List<string> HelpDoComando(string comando)
         {
             var retorno = new List<string>();
             var cmd = ComandosDoSistema.COMANDOS[comando];
