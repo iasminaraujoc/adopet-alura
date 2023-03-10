@@ -8,8 +8,8 @@ try
     var comando = ComandosDoSistema.COMANDOS[instrucao];
     if (comando is not null)
     {
-      var resultado = await comando.ExecutarAsync(args);
-      InterfaceComUsuario.ExibeInformacao(resultado);
+      var resultado = await comando.ExecutarAsync(args);     
+      InterfaceComUsuario.ExibeInformacao(resultado.Value);
     }
     else InterfaceComUsuario.ExibeInformacao("Comando inválido");
 }

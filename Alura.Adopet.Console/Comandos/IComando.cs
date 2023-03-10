@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.Adopet.Console.Comandos
 {
     internal interface IComando // padrão Command
     {
         string Documentacao { get; }
-        Task<List<string>> ExecutarAsync(string[] args);
+        Task<ActionResult<IEnumerable<string>>> ExecutarAsync(string[] args);
     }
 }

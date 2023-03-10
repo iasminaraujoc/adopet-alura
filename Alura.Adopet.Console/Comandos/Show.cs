@@ -1,6 +1,6 @@
 ﻿using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.UI;
 using Alura.Adopet.Console.Util;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -8,10 +8,11 @@ namespace Alura.Adopet.Console.Comandos
     {
         public string Documentacao => $" adopet show   <arquivo> comando que exibe no terminal o conteúdo do arquivo importado.";
 
-        public Task<List<string>> ExecutarAsync(string[] args)
+        public Task<ActionResult<IEnumerable<string>>> ExecutarAsync(string[] args)
         {
-            var retorno = this.ExibeArquivos(caminhoArquivo: args[1]);
-            return Task.FromResult(retorno);
+            var retorno = this.ExibeArquivos(caminhoArquivo: args[1]);         
+            return Task.FromResult<ActionResult<IEnumerable<string>>>(retorno);
+
         }
 
         public List<string> ExibeArquivos(string caminhoArquivo)

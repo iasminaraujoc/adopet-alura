@@ -1,4 +1,5 @@
 ﻿using Alura.Adopet.Console.UI;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -6,12 +7,12 @@ namespace Alura.Adopet.Console.Comandos
     {
         public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
 
-        public Task<List<string>> ExecutarAsync(string[] args)
+        public Task<ActionResult<IEnumerable<string>>> ExecutarAsync(string[] args)
         {
             var retorno = new List<string>();
             if (args.Length == 2) retorno = this.HelpDoComando(comando: args[1]);
-            else retorno = this.ExibeDocumentacao();
-            return Task.FromResult(retorno);
+            else retorno = this.ExibeDocumentacao();    
+            return Task.FromResult<ActionResult<IEnumerable<string>>>(retorno);
         }
 
         private List<string> ExibeDocumentacao()
