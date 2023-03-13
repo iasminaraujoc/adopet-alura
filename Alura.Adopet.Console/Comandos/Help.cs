@@ -6,12 +6,13 @@ namespace Alura.Adopet.Console.Comandos
     {
         public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
 
-        public Task<List<string>> ExecutarAsync(string[] args)
+        public Task<IResultado> ExecutarAsync(string[] args)
         {
             var retorno = new List<string>();
             if (args.Length == 2) retorno = this.HelpDoComando(comando: args[1]);
             else retorno = this.ExibeDocumentacao();
-            return Task.FromResult(retorno);
+
+            return Task.FromResult<IResultado>(new Ok(retorno));
         }
 
         private List<string> ExibeDocumentacao()

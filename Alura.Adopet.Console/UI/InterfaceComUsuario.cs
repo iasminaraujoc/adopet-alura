@@ -1,4 +1,6 @@
-﻿namespace Alura.Adopet.Console.UI
+﻿using Alura.Adopet.Console.Comandos;
+
+namespace Alura.Adopet.Console.UI
 {
     internal static class InterfaceComUsuario
     {
@@ -7,12 +9,18 @@
             System.Console.WriteLine(mensagem);
         }
 
-        static public void ExibeInformacao(List<string> mensagems)
+        static public void ExibeInformacao(Ok resultado)
         {
-            foreach (var mensagem in mensagems)
-            {
-                System.Console.WriteLine(mensagem);
-            }
+            System.Console.WriteLine(resultado.Informacao.ToString());
+            //foreach (var mensagem in mensagems)
+            //{
+            //    System.Console.WriteLine(mensagem);
+            //}
+        }
+
+        static public void ExibeErro(Erro resultado)
+        {
+            System.Console.WriteLine(resultado.MensagemErro);
         }
     }
 }

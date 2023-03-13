@@ -9,6 +9,6 @@ namespace Alura.Adopet.Console.Comandos
     internal interface IComando // padrão Command
     {
         string Documentacao { get; }
-        Task<List<string>> ExecutarAsync(string[] args);
+        Task<IResultado> ExecutarAsync(string[] args);
     }
 }
