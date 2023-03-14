@@ -1,11 +1,9 @@
-﻿using Alura.Adopet.Console.Modelos;
-using Alura.Adopet.Console.Services;
-using Alura.Adopet.Console.UI;
+﻿using Alura.Adopet.Console.Services;
 
 namespace Alura.Adopet.Console.Comandos
 {
     [Util.DocComando($" adopet list  comando que exibe no terminal o conteúdo importado no servidor.")]
-    internal class List : IComando
+    internal class List : Comando
     {
         PetService clientPet;
 
@@ -14,23 +12,10 @@ namespace Alura.Adopet.Console.Comandos
             clientPet = new PetService();
         }
 
-        public async Task<IResultado> ExecutarAsync(string[] args)
-        {
-            try
-            {
-                return await this.ListPets();
-            }
-            catch (Exception ex)
-            {
-                return new Erro(ex.Message);
-            }
-        }
-
-        public async Task<IResultado> ListPets()
+        public override async Task<IResultado> ExecAsync(string[] args)
         {
             var pets = await clientPet.ListAsync();
             return new Ok(pets);
         }
-
     }
 }
