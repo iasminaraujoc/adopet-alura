@@ -1,11 +1,11 @@
 ﻿using Alura.Adopet.Console.UI;
+using System.Reflection;
 
 namespace Alura.Adopet.Console.Comandos
 {
+    [Util.DocComando($" adopet help [comando] para obter mais informações sobre um comando.")]
     internal class Help : IComando
     {
-        public string Documentacao => $" adopet help [comando] para obter mais informações sobre um comando.";
-
         public Task<IResultado> ExecutarAsync(string[] args)
         {
             var retorno = new List<string>();
@@ -13,6 +13,14 @@ namespace Alura.Adopet.Console.Comandos
             else retorno = this.ExibeDocumentacao();
 
             return Task.FromResult<IResultado>(new Ok(retorno));
+        }
+
+        private string RecuperaDocumentacao(IComando comando)
+        {
+            Type tipoComando = comando.GetType();
+            var doc = tipoComando.GetCustomAttributes<Util.DocComando>().FirstOrDefault();
+            if (doc is not null) return doc.Documentacao;
+            return string.Empty;
         }
 
         private List<string> ExibeDocumentacao()
@@ -27,7 +35,7 @@ namespace Alura.Adopet.Console.Comandos
             retorno.Add("Comando possíveis: ");
             foreach (var cmd in ComandosDoSistema.COMANDOS)
             {
-                retorno.Add(cmd.Documentacao);
+                retorno.Add(this.RecuperaDocumentacao(cmd));
             }     
             
             return retorno;
@@ -37,7 +45,7 @@ namespace Alura.Adopet.Console.Comandos
             var retorno = new List<string>();
             var cmd = ComandosDoSistema.COMANDOS[comando];
             if (cmd is not null)
-                retorno.Add(cmd.Documentacao);
+                retorno.Add(this.RecuperaDocumentacao(cmd));
 
             return retorno;
         }
