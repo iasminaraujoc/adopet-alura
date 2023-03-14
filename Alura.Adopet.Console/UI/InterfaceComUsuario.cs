@@ -24,24 +24,42 @@ namespace Alura.Adopet.Console.UI
             if (resultado is null) return;
             if (resultado.Informacao is null) return;
 
-            if (resultado.Informacao is List<Pet>)
+            var defaultColor = System.Console.ForegroundColor;
+            try
             {
-                ExibeLista(resultado.Informacao as List<Pet>);
-                return;
-            }
+                System.Console.ForegroundColor = ConsoleColor.Green;
+                if (resultado.Informacao is List<Pet>)
+                {
+                    ExibeLista(resultado.Informacao as List<Pet>);
+                    return;
+                }
 
-            if(resultado.Informacao is List<string>)
+                if (resultado.Informacao is List<string>)
+                {
+                    ExibeLista(resultado.Informacao as List<string>);
+                    return;
+                }
+
+                System.Console.WriteLine(resultado.Informacao.ToString());
+            }
+            finally
             {
-                ExibeLista(resultado.Informacao as List<string>);
-                return;
+                System.Console.ForegroundColor = defaultColor;
             }
-
-            System.Console.WriteLine(resultado.Informacao.ToString());
         }
 
         static public void ExibeErro(Erro resultado)
         {
-            System.Console.WriteLine(resultado.MensagemErro);
+            var defaultColor = System.Console.ForegroundColor;
+            try
+            {
+                System.Console.ForegroundColor = ConsoleColor.Red;
+                System.Console.WriteLine($"Aconteceu um exceção: {resultado.MensagemErro}");
+            }
+            finally
+            {
+                System.Console.ForegroundColor = defaultColor;
+            }
         }
     }
 }

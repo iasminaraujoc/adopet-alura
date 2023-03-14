@@ -9,10 +9,17 @@ namespace Alura.Adopet.Console.Comandos
         public Task<IResultado> ExecutarAsync(string[] args)
         {
             var retorno = new List<string>();
-            if (args.Length == 2) retorno = this.HelpDoComando(comando: args[1]);
-            else retorno = this.ExibeDocumentacao();
+            try
+            {
+                if (args.Length == 2) retorno = this.HelpDoComando(comando: args[1]);
+                else retorno = this.ExibeDocumentacao();
 
-            return Task.FromResult<IResultado>(new Ok(retorno));
+                return Task.FromResult<IResultado>(new Ok(retorno));
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult<IResultado>(new Erro(ex.Message));
+            }
         }
 
         private string RecuperaDocumentacao(IComando comando)

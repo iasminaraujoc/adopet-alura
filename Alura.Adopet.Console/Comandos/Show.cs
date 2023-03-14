@@ -9,8 +9,15 @@ namespace Alura.Adopet.Console.Comandos
     {
         public Task<IResultado> ExecutarAsync(string[] args)
         {
-            var retorno = this.ExibeArquivos(caminhoArquivo: args[1]);
-            return Task.FromResult<IResultado>(new Ok(retorno));
+            try
+            {
+                var retorno = this.ExibeArquivos(caminhoArquivo: args[1]);
+                return Task.FromResult<IResultado>(new Ok(retorno));
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult<IResultado>(new Erro(ex.Message));
+            }
         }
 
         public List<Pet> ExibeArquivos(string caminhoArquivo)

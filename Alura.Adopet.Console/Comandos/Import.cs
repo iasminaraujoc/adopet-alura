@@ -16,7 +16,14 @@ namespace Alura.Adopet.Console.Comandos
 
         public async Task<IResultado> ExecutarAsync(string[] args)
         {
-            return await RealizaImportacaoAsync(caminhoArquivo: args[1]);
+            try
+            {
+                return await RealizaImportacaoAsync(caminhoArquivo: args[1]);
+            }
+            catch (Exception ex)
+            {
+                return new Erro(ex.Message);
+            }
         }
 
         public async Task<IResultado> RealizaImportacaoAsync(string caminhoArquivo)

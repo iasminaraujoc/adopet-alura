@@ -16,7 +16,14 @@ namespace Alura.Adopet.Console.Comandos
 
         public async Task<IResultado> ExecutarAsync(string[] args)
         {
-            return await this.ListPets();
+            try
+            {
+                return await this.ListPets();
+            }
+            catch (Exception ex)
+            {
+                return new Erro(ex.Message);
+            }
         }
 
         public async Task<IResultado> ListPets()
