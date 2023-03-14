@@ -6,7 +6,6 @@ var comando = ComandosDoSistema.COMANDOS[instrucao];
 if (comando is not null)
 {
     IResultado resultado = await comando.ExecutarAsync(args);
-    if (resultado.Sucesso) InterfaceComUsuario.ExibeInformacao(resultado as Ok);
-    else InterfaceComUsuario.ExibeErro(resultado as Erro);
+    InterfaceComUsuario.ExibeResultado(resultado);
 }
 else InterfaceComUsuario.ExibeInformacao("Comando inválido");

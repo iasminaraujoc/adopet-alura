@@ -19,28 +19,15 @@ namespace Alura.Adopet.Console.UI
             }
         }
 
-        static public void ExibeInformacao(Ok resultado)
+        public static void ExibeResultado(IResultado resultado)
         {
             if (resultado is null) return;
-            if (resultado.Informacao is null) return;
 
             var defaultColor = System.Console.ForegroundColor;
             try
             {
-                System.Console.ForegroundColor = ConsoleColor.Green;
-                if (resultado.Informacao is List<Pet>)
-                {
-                    ExibeLista(resultado.Informacao as List<Pet>);
-                    return;
-                }
-
-                if (resultado.Informacao is List<string>)
-                {
-                    ExibeLista(resultado.Informacao as List<string>);
-                    return;
-                }
-
-                System.Console.WriteLine(resultado.Informacao.ToString());
+                if (resultado is Ok) ExibeInformacao(resultado as Ok);
+                else ExibeErro(resultado as Erro);
             }
             finally
             {
@@ -48,18 +35,32 @@ namespace Alura.Adopet.Console.UI
             }
         }
 
-        static public void ExibeErro(Erro resultado)
+        private static void ExibeInformacao(Ok? resultado)
         {
-            var defaultColor = System.Console.ForegroundColor;
-            try
+            if (resultado is null) return;
+            if (resultado.Informacao is null) return;
+
+            System.Console.ForegroundColor = ConsoleColor.Green;
+            if (resultado.Informacao is List<Pet>)
             {
-                System.Console.ForegroundColor = ConsoleColor.Red;
-                System.Console.WriteLine($"Aconteceu um exceção: {resultado.MensagemErro}");
+                ExibeLista(resultado.Informacao as List<Pet>);
+                return;
             }
-            finally
+
+            if (resultado.Informacao is List<string>)
             {
-                System.Console.ForegroundColor = defaultColor;
+                ExibeLista(resultado.Informacao as List<string>);
+                return;
             }
+
+            System.Console.WriteLine(resultado.Informacao.ToString());
+        }
+
+        private static void ExibeErro(Erro? resultado)
+        {
+            if (resultado is null) return;
+            System.Console.ForegroundColor = ConsoleColor.Red;
+            System.Console.WriteLine($"Aconteceu um exceção: {resultado.MensagemErro}");
         }
     }
 }
