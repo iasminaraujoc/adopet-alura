@@ -1,6 +1,6 @@
 ﻿namespace Alura.Adopet.Console.Comandos
 {
-    internal class Ok : IResultado
+    internal class Ok: IResultado
     {
         public Ok(object informacao)
         {
