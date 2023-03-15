@@ -19,10 +19,12 @@ namespace Alura.Adopet.Console.UI
             }
         }
 
-        static public void ExibeInformacao(Ok resultado)
+        private static void ExibeInformacao(Ok? resultado)
         {
             if (resultado is null) return;
             if (resultado.Informacao is null) return;
+
+            System.Console.ForegroundColor = ConsoleColor.Green;
 
             if (resultado.Informacao is List<Pet>)
             {
@@ -30,7 +32,7 @@ namespace Alura.Adopet.Console.UI
                 return;
             }
 
-            if(resultado.Informacao is List<string>)
+            if (resultado.Informacao is List<string>)
             {
                 ExibeLista(resultado.Informacao as List<string>);
                 return;
@@ -39,9 +41,25 @@ namespace Alura.Adopet.Console.UI
             System.Console.WriteLine(resultado.Informacao.ToString());
         }
 
-        static public void ExibeErro(Erro resultado)
+        private static void ExibeErro(Erro? resultado)
         {
-            System.Console.WriteLine(resultado.MensagemErro);
+            if (resultado is null) return;
+            
+            System.Console.ForegroundColor = ConsoleColor.Red;
+            System.Console.WriteLine(resultado.MensagemErro);            
+        }
+
+        public static void ExibeResultado(IResultado resultado)
+        {
+            try
+            {
+                if (resultado.Sucesso) ExibeInformacao(resultado as Ok);
+                else ExibeErro(resultado as Erro);
+            }
+            finally
+            {
+                System.Console.ForegroundColor = ConsoleColor.White;
+            }
         }
     }
 }
