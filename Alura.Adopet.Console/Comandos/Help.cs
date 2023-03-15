@@ -1,12 +1,11 @@
-﻿using Alura.Adopet.Console.UI;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Alura.Adopet.Console.Comandos
 {
     [Util.DocComando($" adopet help [comando] para obter mais informações sobre um comando.")]
-    internal class Help : IComando
+    internal class Help : Comando
     {
-        public Task<IResultado> ExecutarAsync(string[] args)
+        public override Task<IResultado> ExecAsync(string[] args)
         {
             var retorno = new List<string>();
             if (args.Length == 2) retorno = this.HelpDoComando(comando: args[1]);
