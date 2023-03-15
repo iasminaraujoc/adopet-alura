@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace Alura.Adopet.Console.Comandos
 {
@@ -29,7 +23,7 @@ namespace Alura.Adopet.Console.Comandos
             { "help", new Help() },
         };
 
-        public IComando? this[string key] => comandos[key];
+        public IComando? this[string key] => comandos.ContainsKey(key) ? comandos[key] : null;
 
         public IEnumerator<IComando> GetEnumerator()
         {

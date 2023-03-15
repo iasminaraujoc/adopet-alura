@@ -1,22 +1,14 @@
 ﻿using Alura.Adopet.Console.Comandos;
 using Alura.Adopet.Console.Modelos;
+using System.Runtime.CompilerServices;
 
 namespace Alura.Adopet.Console.UI
 {
     internal static class InterfaceComUsuario
     {
-        static public void ExibeInformacao(string mensagem)
+        public static void ExibeInformacao(string mensagem)
         {
-            System.Console.WriteLine(mensagem);
-        }
-
-        private static void ExibeLista<T>(List<T>? lista)
-        {
-            if (lista is null) return;
-            foreach (var item in lista) 
-            {
-                System.Console.WriteLine(item);
-            }
+            ExibeResultado(new Ok(mensagem));
         }
 
         public static void ExibeResultado(IResultado resultado)
@@ -41,19 +33,7 @@ namespace Alura.Adopet.Console.UI
             if (resultado.Informacao is null) return;
 
             System.Console.ForegroundColor = ConsoleColor.Green;
-            if (resultado.Informacao is List<Pet>)
-            {
-                ExibeLista(resultado.Informacao as List<Pet>);
-                return;
-            }
-
-            if (resultado.Informacao is List<string>)
-            {
-                ExibeLista(resultado.Informacao as List<string>);
-                return;
-            }
-
-            System.Console.WriteLine(resultado.Informacao.ToString());
+            MotorExibicao.ExibeInformacao(resultado);
         }
 
         private static void ExibeErro(Erro? resultado)
