@@ -8,7 +8,7 @@
             app.UseSwaggerUI(
                 c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoAPI V1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Adopet.API V1");
                     c.RoutePrefix = string.Empty;
                 }
             );

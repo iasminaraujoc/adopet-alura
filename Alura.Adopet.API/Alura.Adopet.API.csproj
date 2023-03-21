@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -19,6 +20,10 @@
     <None Remove="Dominio\NovaPasta1\**" />
     <None Remove="Dominio\NovaPasta\**" />
     <None Remove="Files\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="htmlpage.html" />
   </ItemGroup>
 
   <ItemGroup>

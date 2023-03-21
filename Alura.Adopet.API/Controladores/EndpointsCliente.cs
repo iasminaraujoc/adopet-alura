@@ -14,7 +14,7 @@ namespace Alura.Adopet.API.Controladores
             app.MapGet("v1/cliente/listar", async ([FromServices] IClienteService service) =>
             {
                 return Results.Ok(await service.BuscaClientAsync());
-            });
+            }).WithTags("Cliente");
             #endregion
 
         }
