@@ -1,28 +1,15 @@
-﻿using Alura.Adopet.Console.Comandos;
-using Alura.Adopet.Console.Modelos;
+﻿using Alura.Adopet.Console.Modelos;
 
 namespace Alura.Adopet.Console.UI
 {
-    internal class ExibicaoListaPets : Exibicao
+    internal class ExibicaoListaPets : IExibicao<List<Pet>>
     {
-        public ExibicaoListaPets(Exibicao? proximo): base(proximo) { }
-
-        public override bool PodeExibir(Ok resultado)
+        public void Exibe(List<Pet> resultado)
         {
-            return resultado.Informacao is List<Pet>;
-        }
-
-        public override void Exibe(Ok resultado)
-        {
-            if (this.PodeExibir(resultado))
+            foreach (var item in resultado)
             {
-                List<Pet> lista = (List<Pet>)resultado.Informacao;
-                foreach (var item in lista)
-                {
-                    System.Console.WriteLine(item);
-                }
-            } else base.Exibe(resultado);
-            
+                System.Console.WriteLine(item);
+            }            
         }
     }
 }

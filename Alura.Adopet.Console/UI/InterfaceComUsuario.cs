@@ -33,7 +33,7 @@ namespace Alura.Adopet.Console.UI
             if (resultado.Informacao is null) return;
 
             System.Console.ForegroundColor = ConsoleColor.Green;
-            MotorExibicao.ExibeInformacao(resultado);
+            MotorExibicao.ExibeInformacao(resultado.Informacao);
         }
 
         private static void ExibeErro(Erro? resultado)

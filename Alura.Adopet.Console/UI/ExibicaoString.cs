@@ -1,26 +1,10 @@
-﻿using Alura.Adopet.Console.Comandos;
-
-namespace Alura.Adopet.Console.UI
+﻿namespace Alura.Adopet.Console.UI
 {
-    internal class ExibicaoString : Exibicao
+    internal class ExibicaoString : IExibicao<string>
     {
-        public ExibicaoString(Exibicao? proximo) : base(proximo)
+        public void Exibe(string resultado)
         {
-        }
-
-        public override bool PodeExibir(Ok resultado)
-        {
-            return (resultado.Informacao is string);
-        }
-
-        public override void Exibe(Ok resultado)
-        {
-            if (this.PodeExibir(resultado))
-            {
-                string mensagem = (string)resultado.Informacao;
-                System.Console.WriteLine(mensagem);
-            }
-            else base.Exibe(resultado);
+            System.Console.WriteLine(resultado);
         }
     }
 }

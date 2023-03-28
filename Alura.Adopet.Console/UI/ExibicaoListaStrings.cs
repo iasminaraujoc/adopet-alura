@@ -2,26 +2,14 @@
 
 namespace Alura.Adopet.Console.UI
 {
-    internal class ExibicaoListaStrings : Exibicao
+    internal class ExibicaoListaStrings : IExibicao<List<string>>
     {
-        public ExibicaoListaStrings(Exibicao? proximo) : base(proximo) { }
-
-        public override bool PodeExibir(Ok resultado)
+        public void Exibe(List<string> resultado)
         {
-            return resultado.Informacao is List<string>;
-        }
-
-        public override void Exibe(Ok resultado)
-        {
-            if (this.PodeExibir(resultado))
+            foreach (var item in resultado)
             {
-                List<string> strings = (List<string>)resultado.Informacao;
-                foreach (var item in strings)
-                {
-                    System.Console.WriteLine(item);
-                }
+                System.Console.WriteLine(item);
             }
-            else base.Exibe(resultado);
         }
     }
 }
