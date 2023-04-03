@@ -4,7 +4,7 @@ using Alura.Adopet.Console;
 
 // cria instância de HttpClient para consumir API Adopet
 HttpClient client = ConfiguraHttpClient("http://localhost:5057");
-Console.ForegroundColor = ConsoleColor.Green;
+Console.ForegroundColor = ConsoleColor.Green; 
 try
 {
     // args[0] é o comando a ser executado pelo programa
