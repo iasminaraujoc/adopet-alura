@@ -10,12 +10,6 @@ namespace Alura.Adopet.Console
 {
     internal class Import
     {
-        HttpClient client;
-
-        public Import()
-        {
-            client = ConfiguraHttpClient("http://localhost:5057");
-        }
         public async Task ImportarPetsAsync(string caminhoArquivo)
         {
             LeitorDeArquivo leitor = new LeitorDeArquivo();
@@ -25,7 +19,8 @@ namespace Alura.Adopet.Console
             {
                 try
                 {
-                    var resposta = await CreatePetAsync(pet);
+                    var clientPet = new PetService();
+                    await clientPet.CreatePetAsync(pet);
                 }
                 catch (Exception ex)
                 {
@@ -34,23 +29,6 @@ namespace Alura.Adopet.Console
             }
             System.Console.WriteLine("Importação concluída!");
         }
-
-        Task<HttpResponseMessage> CreatePetAsync(Pet pet)
-        {
-            HttpResponseMessage? response = null;
-            using (response = new HttpResponseMessage())
-            {
-                return client.PostAsJsonAsync("pet/add", pet);
-            }
-        }
-        HttpClient ConfiguraHttpClient(string url)
-        {
-            HttpClient _client = new HttpClient();
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            _client.BaseAddress = new Uri(url);
-            return _client;
-        }
+        
     }
 }
